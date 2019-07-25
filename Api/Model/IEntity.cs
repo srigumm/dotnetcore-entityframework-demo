@@ -4,7 +4,7 @@ namespace Api.Model
     public interface IEntity
 {
     int Id { get; }
-    DateTime CreatedOn { get; set; }
-    DateTime ModifiedOn { get; set; }
+    DateTime CreatedOn { get;  }
+    DateTime ModifiedOn { get;  }
 }
 }
