@@ -2,9 +2,9 @@ namespace Api.Repository
 {
     using Api.Model;
     using System.Threading.Tasks;
-    public interface ICreditCardsRepository: IGenericRepository<ICreditCard>
+    public interface ICreditCardsRepository: IGenericRepository<CreditCard>
     {
-        Task<ICreditCard> GetCoolestCreditCard();
+        Task<CreditCard> GetCoolestCreditCard();
     }
     
 }

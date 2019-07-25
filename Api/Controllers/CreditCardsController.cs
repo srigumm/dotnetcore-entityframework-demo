@@ -3,18 +3,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-
+using Api.Model;
+using Api.Repository;
 namespace Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ValuesController : ControllerBase
+    public class CreditCardsController : ControllerBase
     {
+        private ICreditCardsRepository _repository;
+        public CreditCardsController(ICreditCardsRepository creditCardsRepository)
+        {
+            _repository = creditCardsRepository;
+        }
         // GET api/values
         [HttpGet]
-        public ActionResult<IEnumerable<string>> Get()
+        public ActionResult<IEnumerable<CreditCard>> Get()
         {
-            return new string[] { "value1", "value2" };
+            return _repository.GetAll().ToList();
         }
 
         // GET api/values/5
@@ -26,8 +32,11 @@ namespace Api.Controllers
 
         // POST api/values
         [HttpPost]
-        public void Post([FromBody] string value)
+        public async void Post([FromBody] CreditCard value)
         {
+            Console.WriteLine("Inside Post handler");
+            Console.WriteLine(value.Id);
+            await _repository.CreateAsync(value);
         }
 
         // PUT api/values/5
