@@ -1,4 +1,4 @@
-brew install yarn     
+brew install yarn  
 yarn create react-app reactui-demo
 yarn start
 =============================
@@ -13,3 +13,43 @@ That, in essence, is what react-scripts eject does. It will stop hiding what it'
 ======================
 what is service worker?
 ======================
+
+==============
+Add Prettier:
+==============
+yarn add prettier --dev
+yarn add pretty-quick --dev
+"scripts":{
+"pretty": "pretty-quick"
+}
+
+Run => yarn pretty => This should prettify your code.
+\*\* you can add --staged and configure only to prettify staged files.
+
+=====
+husky
+=====
+you can use husky hooks and run pretty-quick automatically before commiting your code.
+
+yarn add husky --dev
+"husky": {
+"hooks": {
+"pre-commit": "pretty-quick --staged"
+}
+}
+
+How to test?
+do some dirty formatting in your code like 10 new lines after the function..stage it.. run git commit and see prettier runs before commiting..
+
+======
+eslint
+======
+yarn add eslint-config-prettier --dev
+"script":{
+"lint":"eslint src/\*\*.js"
+}
+How to test?
+add simple error code like test ="1234" and save your file.
+
+Run => yarn lint
+This should show warning like ' 'test' is assigned a value but never used no-unused-vars '
