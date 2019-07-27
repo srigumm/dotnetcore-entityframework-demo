@@ -18,23 +18,25 @@ namespace basicEFDemo.Controllers
         }
         // GET api/values
         [HttpGet]
-        public ActionResult<IEnumerable<Order>> Get()
+        public async Task<ActionResult<IEnumerable<Order>>> GetAsync()
         {
-            return Ok(_repository.GetAll());
+            var orders = await _repository.GetAllAsync();
+            return Ok(orders);
         }
 
         // GET api/values/5
         [HttpGet("{id}")]
-        public ActionResult<string> Get(int id)
+        public async Task<ActionResult<Order>> GetAsync(int id)
         {
-            return Ok(_repository.Get(id));
+            var order = await _repository.GetAsync(id);
+            return Ok(order);
         }
 
         // POST api/values
         [HttpPost]
-        public void Post([FromBody] Order order)
+        public Task Post([FromBody] Order order)
         {
-            _repository.Create(order);
+            return Task.FromResult(_repository.Create(order));
         }
 
         // PUT api/values/5
