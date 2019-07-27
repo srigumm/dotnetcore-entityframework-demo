@@ -1,0 +1,1 @@
+Curl -i -H "Content-Type: application/json" -X POST -d '{"Id":1,"Name":"TV"}' http://localhost:5000/api/values 
