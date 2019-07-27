@@ -27,6 +27,13 @@ namespace basicEFDemo
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            var obj = new MyConfig();
+            Configuration.Bind("MyConfig",obj);
+            Console.WriteLine("TEST CONFIG:");
+            Console.WriteLine(obj.ConnectionString);
+            Console.WriteLine(obj.Timeout);
+            Console.WriteLine("----");
+            Console.WriteLine(Configuration.GetValue<string>("DBConnectionStrings"));
             services.AddDbContext<MyDBContext>(options => options.UseInMemoryDatabase());
             services.AddScoped<IRepository,InMemoryRepository>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
