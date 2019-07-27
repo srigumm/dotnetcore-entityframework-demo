@@ -53,3 +53,27 @@ add simple error code like test ="1234" and save your file.
 
 Run => yarn lint
 This should show warning like ' 'test' is assigned a value but never used no-unused-vars '
+
+=========
+Adding routes in react app
+==========
+
+- use "react-router-dom"
+  yarn add react-router-dom
+- Define routes.js
+  import React from "react";
+  import { Route, Switch } from 'react-router-dom';
+  import Login from "./Components/Login";
+  const Routes = ()=> (
+  <Switch>
+  <Route  path="/" component={Login} />
+  </Switch>
+  );
+  export default Routes;
+- Use routes in app.js
+  import {BrowserRouter as Router} from 'react-router-dom';
+  import Routes from './routes';
+
+     <Router>
+         <Routes />
+     </Router>
