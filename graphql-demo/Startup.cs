@@ -17,6 +17,8 @@ using System.IO;
 using graphql_demo.Resolvers;
 using graphql_demo.Models;
 using graphql_demo.Repository;
+using graphql_demo.Util;
+using System.Net.Http;
 namespace graphql_demo
 {
     public class Startup
@@ -39,8 +41,15 @@ namespace graphql_demo
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
+            services.AddSingleton<IoAuthClient> (sp => {
+                    return new OAuthClient (
+                        new System.Uri("https://api-sandbox.capitalone.com/oauth2/token"),
+                        Configuration.GetValue<string>("ClientCredentials:clientid"),
+                        Configuration.GetValue<string>("ClientCredentials:clientsecret"),
+                        new HttpClient());
+                });
 
-            services.AddScoped<IRepository,InMemoryRepository>();
+            services.AddScoped<IRepository,BankRepository>();
             // this enables you to use DataLoader in your resolvers.
             services.AddDataLoaderRegistry();
 

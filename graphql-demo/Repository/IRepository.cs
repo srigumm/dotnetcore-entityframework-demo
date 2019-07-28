@@ -5,7 +5,7 @@ namespace graphql_demo.Repository
     using System.Collections.Generic;
     public interface IRepository
     {
-         IEnumerable<CreditCard> Get();
+         Task<IEnumerable<CreditCard>> Get();
          CreditCard Get(int id);
     }
 }

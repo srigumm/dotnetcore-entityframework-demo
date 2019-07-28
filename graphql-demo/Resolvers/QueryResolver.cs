@@ -7,7 +7,7 @@ namespace graphql_demo.Resolvers
     using HotChocolate;
     public class QueryResolver
     {
-        public IEnumerable<CreditCard> GetAllCardsAsync([Service]IRepository workspaceRepository)
+        public Task<IEnumerable<CreditCard>> GetAllCardsAsync([Service]IRepository workspaceRepository)
         {
             return workspaceRepository.Get();
         }
